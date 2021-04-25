@@ -1,0 +1,15 @@
+{
+  "name": "launchesimport",
+  "version": "1.0.0",
+  "description": "Import launches into Amazon AWS DynamoDB",
+  "main": "annotate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "latlon-geohash": "^2.0.0"
+  }
+}
