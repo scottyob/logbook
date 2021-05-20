@@ -1,27 +1,5 @@
-
-# type Task
-#   @model
-#   @auth(
-#     rules: [
-#       { allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete] }
-#       { allow: groups, groups: ["Employees"], queries: [get, list], mutations: null }
-#     ]
-#   ) {
-#   id: ID!
-#   title: String!
-#   description: String
-#   status: String
-# }
-# 
-# type PrivateNote @model @auth(rules: [{ allow: owner }]) {
-#   id: ID!
-#   content: String!
-# }
-
-
 type Launch
   @model
-  @key(name: "launchesByType", fields: ["type"], queryField: "launchesByType")
   @key(name: "launchesByGeohash", fields: ["geohash"], queryField: "launchesByGeohash")
   @auth(
     rules: [
@@ -36,3 +14,4 @@ type Launch
    description: String
    type: String
 }
+

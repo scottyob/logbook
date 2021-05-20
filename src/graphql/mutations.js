@@ -1,4 +1,4 @@
-// @flow
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const createLaunch = /* GraphQL */ `
@@ -10,7 +10,9 @@ export const createLaunch = /* GraphQL */ `
       id
       lat
       lon
+      geohash
       description
+      type
       createdAt
       updatedAt
     }
@@ -25,7 +27,9 @@ export const updateLaunch = /* GraphQL */ `
       id
       lat
       lon
+      geohash
       description
+      type
       createdAt
       updatedAt
     }
@@ -40,7 +44,9 @@ export const deleteLaunch = /* GraphQL */ `
       id
       lat
       lon
+      geohash
       description
+      type
       createdAt
       updatedAt
     }
