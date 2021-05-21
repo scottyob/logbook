@@ -27,7 +27,7 @@ function App() {
           <AmplifySignOut />
 
           <NavBar />
-          <Container className="flex-grow-1 mt-5">
+          <Container className="flex-grow-1 mt-5" fluid={true}>
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/logbook/" exact component={LogBook} />

@@ -8,10 +8,10 @@ Once Amplify is deployed, we need to populate launches.
 
 ```
 # Convert the KMZ file to GeoJSON
-npm install -g togeojson
+sudo npm install -g togeojson
 wget https://www.paraglidingspots.com/data/paraglidingspots.kmz
 unzip paraglidingspots.kmz
-togeojson doc.jml > tmp.json
+togeojson doc.kml > tmp.json
 # Playing with Ed
 # cat tmp.json | jq '.features | map(select(.properties.name | contains("Ed Levin")) | {lat: .geometry.coordinates[1], lon: .geometry.coordinates[0], id: .properties.name, description: .properties.description})' > launches.json
 # cat tmp.json | jq '.features | map(select(.geometry.type == "Point") | select(.properties.name | contains("Mols Hoved")))'
@@ -26,6 +26,14 @@ cat tmp.json | jq '.features | map(select(.geometry.type == "Point") | {lat: .ge
 # Annotate with GeoHash
 # cat launches.json | node /code/logbook/launchesImport/annotate.js > annotated.json
 cat launches.json | python /code/logbook/launchesImport/annotate.py > annotated.json
+
+mkdir split
+cat annotated.json | jq "$(cat /code/logbook/launchesImport/simple.jq)" -c > split/rem.jsonl
+cd split
+split -l 1 rem.jsonl
+rm rem.jsonl
+# Upload items, 500 at a time.
+ls | xargs -P5 -L1 -I{} aws dynamodb put-item --table-name Launch-isprjxqmsre4vpcku3t7k524wy-dev --item file://{}
 
 
 # Fuck AWS make this hard...

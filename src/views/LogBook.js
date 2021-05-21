@@ -3,6 +3,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import Geohash from 'latlon-geohash';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useDropzone } from 'react-dropzone';
+import { Table } from 'reactstrap';
 const IGCParser = require("igc-parser");
 const GeoLocation = require("geolocation-utils");
 
@@ -52,22 +53,36 @@ function Uploader(props) {
     var geohashes = props.files.map(file => {
       const fix = file.igc.fixes[0]
       const geohash = Geohash.encode(fix.latitude, fix.longitude, RESOLUTION);
-      const neighbors = []; //Geohash.neighbours(geohash);
+      const neighbors = Geohash.neighbours(geohash);
       return [...Object.values(neighbors), geohash];
     }).flat();
+    geohashes = [...new Set(geohashes)];
+    console.log(geohashes);
 
     // Load up all of the launches from the DB for these geohashes
     var launches = Promise.all(geohashes.map(async h => {
       const dbResult = await API.graphql(graphqlOperation(launchesFromGeohash, {
         geohash: h
       }));
+      console.log(dbResult);
       return dbResult.data.launchesByGeohash.items;
     })).then((values) => {
+      console.log(values);
       setDbLaunches(values.flat());
     })
   }, [props.files]);
 
-  return props.files.map(f =>
+  var files = props.files;
+  files = files.sort(function(a, b) {
+    if (a.name > b.name) {
+      return 1;
+    }
+    else if (b.name > a.name) {
+      return -1;
+    }
+    return 0;
+  });
+  return files.map(f =>
     <Flight key={f.filename} filename={f.name} igc={f.igc} locations={dbLaunches} />
   );
 
@@ -194,14 +209,13 @@ function LogBook() {
   // ));
 
   return (
-    <section className="container">
+    <section className="container-fluid">
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
       
-      <p>This will all eventually be in a database</p>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Date</th>
@@ -219,7 +233,7 @@ function LogBook() {
         <tbody>
           {flights}
         </tbody>
-      </table>
+      </Table>
     </section>
   );
 
