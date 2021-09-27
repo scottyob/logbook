@@ -1,6 +1,6 @@
 # About
 
-LogBook is a personal logbook to store my Paragliding flights.  Others might find it useful, so it's designed as an Amplify web app with multi-tenant abilities.
+[https://logbook.scottyob.com/](LogBook) is a personal logbook to store my Paragliding flights.  Others might find it useful, so it's designed as an Amplify web app with multi-tenant abilities.
 
 # Setting Up
 

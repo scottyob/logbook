@@ -20,11 +20,11 @@ const Footer = () => { return <div /> }
 
 
 
+
 function App() {
   return (
     <Router history={history}>
         <div id="app" className="d-flex flex-column h-100">
-          <AmplifySignOut />
 
           <NavBar />
           <Container className="flex-grow-1 mt-5" fluid={true}>
