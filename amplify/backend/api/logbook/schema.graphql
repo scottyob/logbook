@@ -15,3 +15,26 @@ type Launch
    type: String
 }
 
+type Flight
+  @model
+  @auth(
+  rules: [
+    { allow: owner, ownerField: "owner", operations: [create, update, delete, read] },
+  ])
+  @key(name: "fileByMd5", fields: ["owner", "md5"], queryField: "flightsByMd5")
+  {
+    start: AWSTimestamp!
+    locationName: String!
+    location: Launch
+    vertical: Float!  # Vertical difference, in m
+    duration: Int!  # Duration in seconds
+    windDirectionSpeed: String
+    totalDistance: Int  # Total distance in meters
+    maxDistance: Int  # Maximum distance from origin in meters.
+    glider: String
+    filename: String  # Filename for the flight log
+    igc: String  # IGC File.
+    md5: String
+    comments: String
+    owner: String! 
+}

@@ -52,3 +52,108 @@ export const deleteLaunch = /* GraphQL */ `
     }
   }
 `;
+export const createFlight = /* GraphQL */ `
+  mutation CreateFlight(
+    $input: CreateFlightInput!
+    $condition: ModelFlightConditionInput
+  ) {
+    createFlight(input: $input, condition: $condition) {
+      id
+      start
+      locationName
+      location {
+        id
+        lat
+        lon
+        geohash
+        description
+        type
+        createdAt
+        updatedAt
+      }
+      vertical
+      duration
+      windDirectionSpeed
+      totalDistance
+      maxDistance
+      glider
+      filename
+      igc
+      md5
+      comments
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateFlight = /* GraphQL */ `
+  mutation UpdateFlight(
+    $input: UpdateFlightInput!
+    $condition: ModelFlightConditionInput
+  ) {
+    updateFlight(input: $input, condition: $condition) {
+      id
+      start
+      locationName
+      location {
+        id
+        lat
+        lon
+        geohash
+        description
+        type
+        createdAt
+        updatedAt
+      }
+      vertical
+      duration
+      windDirectionSpeed
+      totalDistance
+      maxDistance
+      glider
+      filename
+      igc
+      md5
+      comments
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteFlight = /* GraphQL */ `
+  mutation DeleteFlight(
+    $input: DeleteFlightInput!
+    $condition: ModelFlightConditionInput
+  ) {
+    deleteFlight(input: $input, condition: $condition) {
+      id
+      start
+      locationName
+      location {
+        id
+        lat
+        lon
+        geohash
+        description
+        type
+        createdAt
+        updatedAt
+      }
+      vertical
+      duration
+      windDirectionSpeed
+      totalDistance
+      maxDistance
+      glider
+      filename
+      igc
+      md5
+      comments
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;

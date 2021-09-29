@@ -1,7 +1,6 @@
 import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { Container } from "reactstrap";
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
 import NavBar from "./components/NavBar";
 import LogBook from "./views/LogBook";

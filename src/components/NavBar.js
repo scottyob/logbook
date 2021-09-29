@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 
 
@@ -14,11 +13,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 }
   from "reactstrap";
 
@@ -38,7 +32,7 @@ const NavBar = () => {
   }, []);
 
   let navUserItem = null;
-  if (authState == AuthState.SignedIn && user) {
+  if (authState === AuthState.SignedIn && user) {
     navUserItem = <NavItem className="align-right">
       <AmplifySignOut />
     </NavItem>;

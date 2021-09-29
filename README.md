@@ -51,3 +51,7 @@ aws dynamodb batch-write-item --request-items file://upload.json
 
 
 ```
+
+## To Do:
+
+- For 3D maps.  Use https://cesium.com/platform/cesiumjs/
